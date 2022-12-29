@@ -24,7 +24,7 @@ export async function createTodo(
 
   if(! newTodo.name) {
     alert("Task name must not be blank")
-    return {}
+    return {todoId:"", createdAt:"", name:"", dueDate:"", done: false}
   }
 
   const response = await Axios.post(`${apiEndpoint}/todos`,  JSON.stringify(newTodo), {
