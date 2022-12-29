@@ -61,6 +61,10 @@ functions:
         Action:
           - dynamodb:Query
         Resource: !GetAtt TodosTable.Arn
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+        Resource: '*'  
 
   # Configure this function - 
   # Provide iamRoleStatements property. Decide the Actions and AWS Resource. 

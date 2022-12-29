@@ -19,7 +19,11 @@ export const handler = middy(
     logger.info('Deleted todoId', todoId)
 
     return {
-      statusCode: 201,
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({})
     }
   }
