@@ -109,6 +109,11 @@ functions:
         Action:
           - dynamodb:UpdateItem
         Resource: !GetAtt TodosTable.Arn
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: '*'  
+
 
   # Configure this function
   # Provide property for setting up CORS, Authorizer, iamRoleStatements
@@ -141,6 +146,11 @@ functions:
           - s3:GetObject
           - '*'
         Resource: !GetAtt AttachmentsBucket.Arn
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: '*'  
+
 
 resources:
   Resources:

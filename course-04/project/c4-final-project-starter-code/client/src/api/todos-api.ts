@@ -21,6 +21,12 @@ export async function createTodo(
   idToken: string,
   newTodo: CreateTodoRequest
 ): Promise<Todo> {
+
+  if(! newTodo.name) {
+    alert("Task name must not be blank")
+    return true
+  }
+
   const response = await Axios.post(`${apiEndpoint}/todos`,  JSON.stringify(newTodo), {
     headers: {
       'Content-Type': 'application/json',
