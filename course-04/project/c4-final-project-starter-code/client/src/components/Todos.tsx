@@ -51,9 +51,8 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
         name: this.state.newTodoName,
         dueDate
       })
-      
-      console.log("Test" + newTodo.name)
-      if(newTodo.name !== undefined) {
+            
+      if(newTodo.name && newTodo.name !== undefined) {
         this.setState({
           todos: [...this.state.todos, newTodo],
           newTodoName: ''
