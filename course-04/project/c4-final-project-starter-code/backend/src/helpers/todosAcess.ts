@@ -32,10 +32,12 @@ export class TodosAccess {
   }
 
   async createTodo(todoItem: TodoItem): Promise<TodoItem> {
-    await this.docClient.put({
-      TableName: this.todosTable,
-      Item: todoItem
-    }).promise()
+    if(todoItem.name && todoItem.name.length > 2 && todoItem.name.length < 300) {
+      await this.docClient.put({
+        TableName: this.todosTable,
+        Item: todoItem
+      }).promise()
+    }
 
     return todoItem
   }

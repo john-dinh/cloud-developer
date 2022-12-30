@@ -12,17 +12,18 @@ const logger = createLogger('auth')
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {   
     const newTodo: CreateTodoRequest = JSON.parse(event.body)
-    if(! newTodo.name) {
-      logger.info('Skipped as Task name is blank')
+    if(! newTodo.name || (newTodo.name && newTodo.name.length < 3 && newTodo.name.length >300)) {
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
-          //item: {"todoId", "userId", "name", "dueDate", new Date().toISOString(), false}
           item: {}
         })
       }
     }
-
     let userId = getUserId(event)
 
     // Create new TODO
